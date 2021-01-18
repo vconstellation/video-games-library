@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from gamelist.models import Games_Collection, Games_Reviews
+from gamelist.models import GamesCollection, GamesReviews
 # Create your models here.
 
 class Profile(models.Model):
@@ -16,8 +16,8 @@ class Profile(models.Model):
     #todo: specs (as another model? also completed games)
 
     #experimental
-    review = models.ManyToManyField(Games_Reviews)
-    game = models.ManyToManyField(Games_Collection)
+    review = models.ManyToManyField(GamesReviews)
+    game = models.ManyToManyField(GamesCollection)
 
 
 # class User_Game_Collection(models.Model):

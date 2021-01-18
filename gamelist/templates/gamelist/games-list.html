@@ -1,0 +1,10 @@
+{% extends "layout/base.html" %}
+{% block content %}
+<div>
+    {% for i in object_list  %}
+    <h1>{{ i.name }}</h1>
+    <h2>{{ i.genre }}</h2>
+    {% endfor %}
+</div>
+
+{% endblock %}
