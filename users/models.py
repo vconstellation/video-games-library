@@ -10,7 +10,7 @@ class Profile(models.Model):
     nickname = models.CharField(max_length=18)
     bio = models.TextField(max_length=450)
 
-    count_of_games = models.IntegerField
+    #count_of_games = models.IntegerField
 
     platform_used = models.CharField(max_length=12)
     #todo: specs (as another model? also completed games)

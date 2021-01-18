@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import get_object_or_404
 from .models import Profile
-from .forms import ProfileUpdateForm
+from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate
 
 # Create your views here.
 
@@ -19,14 +18,15 @@ def register(request):
 
 @login_required
 def profile(request):
-    context = Profile
-    return render(request, 'users/profile.html', {'context': context})
+    return render(request, 'users/profile.html')
 
 
 @login_required()
 def profile_update(request):
     if request.method == 'POST':
-        form = ProfileUpdateForm(request.POST, instance=request.user.profile)
+        form = ProfileUpdateForm(request.POST,
+                                 request.FILES,
+                                 instance=request.user.profile)
         if form.is_valid():
             form.save()
             return redirect('profile')
@@ -36,3 +36,17 @@ def profile_update(request):
 
     context = form
     return render(request, 'users/profile_update.html', {'context': context})
+
+@login_required()
+def profile_game_collection_update(request):
+    if request.method == 'POST':
+        form = ProfileGameCollectionUpdate(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')
+
+    else:
+        form = ProfileGameCollectionUpdate(instance=request.user.profile)
+
+    context = form
+    return render(request, 'users/profile_game_update.html', {'context': context})

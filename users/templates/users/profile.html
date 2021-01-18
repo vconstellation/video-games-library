@@ -2,6 +2,7 @@
 {% block content %}
     <div>
         <h1>Strona profilowa</h1>
-        <h2>{{ context.pk }}</h2>
+        <h2>{{ user.username }}</h2>
+        <h2>{{ user.profile.nickname }}</h2>
     </div>
 {% endblock %}

@@ -12,6 +12,7 @@ urlpatterns=[
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('profile/', user_views.profile, name='profile'),
     path('profile_update/', user_views.profile_update, name='profile-update'),
+    path('game_collection_update/', user_views.profile_game_collection_update, name='profile-game-update'),
     path('games/create/', game_views.create_game, name='create-game'),
     path('games/list/', game_views.GamesCollectionListView.as_view(template_name='gamelist/games-list.html'), name='games-list')
 ]
