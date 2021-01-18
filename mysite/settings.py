@@ -9,14 +9,6 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-#todo:
-#import bootstrap and fix the frontend
-#create pages for the profile
-#create forms for the profile update
-#create logic for the profile parameters (such as no. of games)
-#create functions used to connect to the database and to obtain game records
-#create pages used to browse the video game database
-#create search function using javascript
 
 from pathlib import Path
 
@@ -39,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'layout.apps.LayoutConfig',
     'gamelist.apps.GamelistConfig',
     'users.apps.UsersConfig',

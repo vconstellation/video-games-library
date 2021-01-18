@@ -1,17 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h1>Test site</h1>
-    <h2>This working or what?</h2>
-    <div class="divider"></div>
-    <a href="{% url 'register' %}">register</a>
-    <a href="{% url 'login' %}"> login </a>
-    {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}"> logout </a>
-    {% endif %}
-</body>
-</html>
+{% extends "layout/base.html" %}
+{% block content %}
+    <div>
+         <h1>Test site</h1>
+        <h2>This working or what?</h2>
+        <div class="divider"></div>
+        <a href="{% url 'register' %}">register</a>
+        <a href="{% url 'login' %}"> login </a>
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}"> logout </a>
+        {% endif %}
+    </div>
+{% endblock %}
