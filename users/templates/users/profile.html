@@ -114,7 +114,7 @@
                                                 <label>Title:</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{ i.name }}</p>
+						<a href="{% url 'game-detail' i.id %}">{{ i.name }}</a>
                                             </div>
                                         </div>
                                         <div class="row">

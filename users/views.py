@@ -28,7 +28,10 @@ def profile_update(request):
                                  request.FILES,
                                  instance=request.user.profile)
         if form.is_valid():
-            form.save()
+            temp_save = form.save(commit=False)
+            checkbox = form.cleaned_data['platform_checkbox']
+            temp_save.platform_used = str(checkbox)
+            temp_save.save()
             return redirect('profile')
 
     else:

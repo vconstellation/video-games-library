@@ -13,7 +13,7 @@ class Profile(models.Model):
 
     #count_of_games = models.IntegerField
 
-    platform_used = models.CharField(max_length=12)
+    platform_used = models.CharField(max_length=30)
     #todo: specs (as another model? also completed games)
 
     #experimental
