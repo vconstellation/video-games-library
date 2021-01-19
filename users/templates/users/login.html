@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <div>
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset>
-                <legend>Log in</legend>
-                {{ form }}
-            </fieldset>
-            <div>
-                <button type="submit">Authorize</button>
-            </div>
-        </form>
-    </div>
-
-</body>
-</html>
+{% extends "layout/home.html" %}
+{% block content %}
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            <legend>Log in</legend>
+            {{ form }}
+        </fieldset>
+        <div>
+            <button type="submit">Authorize</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

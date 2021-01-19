@@ -7,6 +7,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(default='default.jpg', upload_to='profile_av')
 
+
     nickname = models.CharField(max_length=18)
     bio = models.TextField(max_length=450)
 
@@ -18,6 +19,9 @@ class Profile(models.Model):
     #experimental
     review = models.ManyToManyField(GamesReviews)
     game = models.ManyToManyField(GamesCollection)
+
+    #urls
+    steam_link = models.CharField(max_length=20)
 
 
 # class User_Game_Collection(models.Model):

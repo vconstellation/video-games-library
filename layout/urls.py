@@ -3,9 +3,11 @@ from . import views
 from users import views as user_views
 from gamelist import views as game_views
 from django.contrib.auth.urls import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
-urlpatterns=[
+urlpatterns = [
     path('', views.home, name='layout-home'),
     path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
@@ -15,4 +17,4 @@ urlpatterns=[
     path('game_collection_update/', user_views.profile_game_collection_update, name='profile-game-update'),
     path('games/create/', game_views.create_game, name='create-game'),
     path('games/list/', game_views.GamesCollectionListView.as_view(template_name='gamelist/games-list.html'), name='games-list')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

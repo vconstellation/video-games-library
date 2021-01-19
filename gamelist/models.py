@@ -15,6 +15,9 @@ class GamesCollection(models.Model):
     genre = models.CharField(max_length=12)
     platforms = models.CharField(max_length=8)
 
+    def __str__(self):
+        return (self.name)
+
 class GamesReviews(models.Model):
 
     #ForeignKey, MtO, Many Reviews to each Game
