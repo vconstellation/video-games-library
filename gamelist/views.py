@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import GamesCollectionForm
 from .models import GamesCollection
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 def create_game(request):
     if request.method == 'POST':
@@ -15,4 +15,7 @@ def create_game(request):
     return render(request, 'gamelist/create-game.html', {'form': form})
 
 class GamesCollectionListView(ListView):
+    model = GamesCollection
+
+class GamesCollectionDetailView(DetailView):
     model = GamesCollection

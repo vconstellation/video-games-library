@@ -4,6 +4,8 @@
     {% for i in object_list  %}
     <h1>{{ i.name }}</h1>
     <h2>{{ i.genre }}</h2>
+    <h2>{{ i.pk }}</h2>
+    <a href="{% url 'game-detail' i.id %}">Details</a>
     {% endfor %}
 </div>
 
