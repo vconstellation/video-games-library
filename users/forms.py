@@ -1,8 +1,5 @@
 from django import forms
 from .models import Profile
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Submit, Div
-from crispy_forms.bootstrap import InlineCheckboxes
 
 platform = [
         ('PC', 'PC'),
