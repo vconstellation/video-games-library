@@ -143,4 +143,16 @@ body{
     font-weight: 600;
     color: #0062cc;
 }
-
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    
+}
+.scrolling-wrapper::-webkit-scrollbar{
+    display: none;
+}
+.card{
+    display: inline-block;
+}
