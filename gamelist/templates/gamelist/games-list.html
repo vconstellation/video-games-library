@@ -4,7 +4,14 @@
 
 <div class="scrolling-wrapper">
     {% for i in object_list %}
-    <div class="card">{{ i.name }}</div>
+    <div class="card">
+        <figure>
+            <a href="{% url 'game-detail' i.pk%}">
+                <img src="{{ i.cover.url }}">
+                <figcaption>{{ i.name }}</figcaption>
+            </a>
+        </figure>
+    </div>
     {% endfor %}
 </div>
 
