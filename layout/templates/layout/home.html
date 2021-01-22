@@ -1,13 +1,13 @@
 {% extends "layout/base.html" %}
 {% block content %}
     <div>
-         <h1>Test site</h1>
-        <h2>This working or what?</h2>
-        <div class="divider"></div>
-        <a href="{% url 'register' %}">register</a>
-        <a href="{% url 'login' %}"> login </a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}"> logout </a>
-        {% endif %}
+        <h1>Test site 2</h1>
+        <div id="games-box"></div>
+        <div id="spinner-box" class="not-visible">
+            <div class="spinner-border" role="status"></div>
+        </div>
+        <div id="loading-box">
+            <button class="btn btn-dark" id="load-btn">Load more</button>
+        </div>
     </div>
 {% endblock %}

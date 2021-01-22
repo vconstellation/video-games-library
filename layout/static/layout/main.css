@@ -156,3 +156,6 @@ body{
 .card{
     display: inline-block;
 }
+.not-visible {
+    display: none;
+}
