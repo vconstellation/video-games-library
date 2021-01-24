@@ -24,7 +24,7 @@ const handleGetData = () => {
                     gamesBox.innerHTML += `<div class="card">
                                                 ${game.name}
                                                 <br>
-                                                <img src="${game.cover}">
+                                                <img src="media/${game.cover}">
                                             </div>`
                 })
             }, 500)

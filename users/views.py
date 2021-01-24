@@ -21,7 +21,7 @@ def profile(request):
     return render(request, 'users/profile.html')
 
 
-@login_required()
+@login_required
 def profile_update(request):
     if request.method == 'POST':
         form = ProfileUpdateForm(request.POST,
@@ -40,7 +40,7 @@ def profile_update(request):
     context = form
     return render(request, 'users/profile_update.html', {'context': context})
 
-@login_required()
+@login_required
 def profile_game_collection_update(request):
     if request.method == 'POST':
         form = ProfileGameCollectionUpdate(request.POST, instance=request.user.profile)

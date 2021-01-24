@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from PIL import Image
 
 # Create your models here.
 class GamesCollection(models.Model):
@@ -17,6 +18,16 @@ class GamesCollection(models.Model):
 
     def __str__(self):
         return (self.name)
+
+    def save(self):
+        super(GamesCollection, self).save()
+
+        img = Image.open(self.cover.path)
+
+        if img.height > 191 or img.width > 264:
+            output_size = (191, 264)
+            img.thumbnail(output_size)
+            img.save(self.cover.path)
 
 class GamesReviews(models.Model):
 
