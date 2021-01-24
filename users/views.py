@@ -1,10 +1,19 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from django.views.generic import TemplateView, UpdateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .models import Profile, ProfileGamesCollection
 from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate
 
-# Create your views here.
+
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'users/profile.html'
+
+
+# class ProfileGamesCollectionUpdateView(LoginRequiredMixin, UpdateView):
+#     model = ProfileGamesCollection
+#     form_class = ProfileGameCollectionUpdate
 
 def register(request):
     if request.method == 'POST':
@@ -15,10 +24,6 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'users/register.html', {'form': form})
-
-@login_required
-def profile(request):
-    return render(request, 'users/profile.html')
 
 
 @login_required
@@ -45,7 +50,17 @@ def profile_game_collection_update(request):
     if request.method == 'POST':
         form = ProfileGameCollectionUpdate(request.POST, instance=request.user.profile)
         if form.is_valid():
-            form.save()
+            obj =  request.user.profile
+
+            game_obj = form.cleaned_data['games_collection']
+            playing = form.cleaned_data['currently_playing']
+            finished_obj = form.cleaned_data['finished']
+
+            
+            game_coll_save_obj = ProfileGamesCollection(profile=obj, games_collection=game_obj, currently_playing=playing, finished=finished_obj)
+            game_coll_save_obj.save()
+
+
             return redirect('profile')
 
     else:

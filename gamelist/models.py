@@ -16,6 +16,8 @@ class GamesCollection(models.Model):
     genre = models.CharField(max_length=12)
     platforms = models.CharField(max_length=8)
 
+    currently_playing = models.BooleanField
+
     def __str__(self):
         return (self.name)
 

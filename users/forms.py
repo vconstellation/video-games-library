@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import Profile, ProfileGamesCollection
 
 platform = [
         ('PC', 'PC'),
@@ -21,9 +21,9 @@ class ProfileUpdateForm(forms.ModelForm):
 
 class ProfileGameCollectionUpdate(forms.ModelForm):
     class Meta:
-        model = Profile
-        fields = ['game']
-        widgets = {
-            'game': forms.CheckboxSelectMultiple()
-        }
+        model = ProfileGamesCollection
+        fields = ['games_collection', 'currently_playing', 'finished']
+        # widgets = {
+        #     'games_collection': forms.CheckboxSelectMultiple()
+        # }
 

@@ -82,7 +82,7 @@
                                                 <label>Games reviewed:</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>12</p>
+                                                <p>{{ user.profile.review.count }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -90,7 +90,7 @@
                                                 <label>Games in collection:</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>123 456 7890</p>
+                                                <p>{{ user.profile.game.count }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -133,7 +133,9 @@
                                                 <label>Completed:</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>[boolean]</p>
+                                                {% if i.currently_playing %}
+                                                <p>Skonczone</p>
+                                                {% endif %}
                                             </div>
                                         </div>
                                         <hr/>
