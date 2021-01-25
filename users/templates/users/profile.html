@@ -1,5 +1,6 @@
 {% extends "layout/base.html" %}
 {% block content %}
+
         <div class="container emp-profile">
             <form method="post">
                 <div class="row">
@@ -31,7 +32,7 @@
                                 <a class="nav-link" id="playing-tab" data-bs-toggle="tab" href="#playing" role="tab" aria-controls="playing" aria-selected="false">Currently Playing</a>
                               </li>
                               <li class="nav-item" role="presentation">
-                                <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Collection</a>
+                                <a class="nav-link" id="collection-tab" data-bs-toggle="tab" href="#collection" role="tab" aria-controls="collection" aria-selected="false">Collection</a>
                               </li>
                               <li class="nav-item" role="presentation">
                                 <a class="nav-link" id="specs-tab" data-bs-toggle="tab" href="#specs" role="tab" aria-controls="specs" aria-selected="false">Specs</a>
@@ -110,14 +111,14 @@
                                             </div>
                                         </div>
                             </div>
-                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                        {% for i in user.profile.game.all %}
+                            <div class="tab-pane fade" id="collection" role="tabpanel" aria-labelledby="collection-tab">
+                                        {% for i in user.profile.profilegamescollection_set.all %}
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Title:</label>
                                             </div>
                                             <div class="col-md-6">
-						<a href="{% url 'game-detail' i.id %}">{{ i.name }}</a>
+						                        <a href="{% url 'game-detail' i.id %}">{{ i.games_collection.name }}</a>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -125,7 +126,7 @@
                                                 <label>Genre:</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{ i.genre }}</p>
+                                                <p>{{ i.games_collection.genre }}</p>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -151,8 +152,18 @@
                                 <h4>Tutaj beda specyfikacje i sprzęt</h4>
                             </div>
                             <div class="tab-pane fade" id="playing" role="tabpanel" aria-labelledby="playing-tab">
-                                <h3>Placeholder text</h3>
-                                <h4>Tutaj beda Gry w które aktualnie gram</h4>
+                                {% for i in user.profile.profilegamescollection_set.all %}
+                                    {% if i.currently_playing is True %}
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label>Title:</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <a href="{% url 'game-detail' i.id %}">{{ i.games_collection.name }}</a>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
