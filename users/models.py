@@ -40,6 +40,6 @@ class ProfileGamesCollection(models.Model):
     games_collection = models.ForeignKey(GamesCollection, on_delete=models.CASCADE)
     date_joined = models.DateField(default=timezone.now)
 
-    currently_playing = models.BooleanField(null=False)
-    finished = models.BooleanField(null=False)
+    currently_playing = models.BooleanField(null=False, default=False)
+    finished = models.BooleanField(null=False, default=False)
 
