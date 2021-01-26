@@ -56,9 +56,12 @@ def profile_game_collection_update(request):
             playing = form.cleaned_data['currently_playing']
             finished_obj = form.cleaned_data['finished']
 
-            
-            game_coll_save_obj = ProfileGamesCollection(profile=obj, games_collection=game_obj, currently_playing=playing, finished=finished_obj)
-            game_coll_save_obj.save()
+            if obj.profilegamescollection_set.filter(games_collection=game_obj).exists():
+                #todo: raise error here
+                pass
+            else:                        
+                game_coll_save_obj = ProfileGamesCollection(profile=obj, games_collection=game_obj, currently_playing=playing, finished=finished_obj)
+                game_coll_save_obj.save()
 
 
             return redirect('profile', slug=request.user.profile.slug)
@@ -69,6 +72,7 @@ def profile_game_collection_update(request):
     context = form
     return render(request, 'users/profile_game_update.html', {'context': context})
 
+@login_required
 def profile_game_collection_remove(request, pk, slug):
     user_profile = request.user.profile
     game = user_profile.profilegamescollection_set.get(pk=pk)
