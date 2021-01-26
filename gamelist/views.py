@@ -9,7 +9,7 @@ from django.http import JsonResponse
 
 def create_game(request):
     if request.method == 'POST':
-        form = GamesCollectionForm(request.POST)
+        form = GamesCollectionForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('layout-home')

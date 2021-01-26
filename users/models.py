@@ -2,12 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from gamelist.models import GamesCollection, GamesReviews
+from django.utils.text import slugify
 from PIL import Image
 # Create your models here.
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(default='default.jpg', upload_to='profile_av')
+
+    slug = models.SlugField(null=True, unique=True)
 
 
     nickname = models.CharField(max_length=18)
@@ -24,6 +27,7 @@ class Profile(models.Model):
     steam_link = models.CharField(max_length=20)
 
     def save(self, *args, **kwargs):
+        self.slug = slugify(self.user.username)
         super(Profile, self).save(*args, **kwargs)
 
         img = Image.open(self.avatar.path)

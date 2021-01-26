@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView, UpdateView
+from django.views.generic import TemplateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Profile, ProfileGamesCollection
 from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate
@@ -9,7 +9,7 @@ from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
-
+    
 
 # class ProfileGamesCollectionUpdateView(LoginRequiredMixin, UpdateView):
 #     model = ProfileGamesCollection
@@ -37,7 +37,7 @@ def profile_update(request):
             checkbox = form.cleaned_data['platform_checkbox']
             temp_save.platform_used = str(checkbox)
             temp_save.save()
-            return redirect('profile')
+            return redirect('profile', slug=request.user.profile.user)
 
     else:
         form = ProfileUpdateForm(instance=request.user.profile)
@@ -61,7 +61,7 @@ def profile_game_collection_update(request):
             game_coll_save_obj.save()
 
 
-            return redirect('profile')
+            return redirect('profile', slug=request.user.profile.slug)
 
     else:
         form = ProfileGameCollectionUpdate(instance=request.user.profile)
