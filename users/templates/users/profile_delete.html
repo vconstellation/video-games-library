@@ -1,0 +1,13 @@
+{% extends 'layout/base.html' %}
+{% block content %}
+<h1> testowanie </h1>
+{% for i in context %}
+{{ i.games_collection.name }}
+{{ i.games_collection }}
+    <form method="POST">
+        {% csrf_token %}<input type="submit" value="DELETE">
+    </form>
+
+
+{% endfor %}
+{% endblock %}

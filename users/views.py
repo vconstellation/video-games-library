@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, UpdateView, DeleteView
@@ -9,7 +9,7 @@ from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
-    
+
 
 # class ProfileGamesCollectionUpdateView(LoginRequiredMixin, UpdateView):
 #     model = ProfileGamesCollection
@@ -68,3 +68,14 @@ def profile_game_collection_update(request):
 
     context = form
     return render(request, 'users/profile_game_update.html', {'context': context})
+
+def profile_game_collection_remove(request, pk, slug):
+    user_profile = request.user.profile
+    game = user_profile.profilegamescollection_set.get(pk=pk)
+    game.delete()
+        
+    return redirect('profile', slug=request.user.profile.slug)
+
+
+
+    

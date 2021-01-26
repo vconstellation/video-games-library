@@ -141,6 +141,14 @@
                                                 {% endif %}
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Delete:</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="{% url 'profile-game-delete' slug=user.profile.slug pk=i.pk %}">Kliknej</a>
+                                            </div>
+                                        </div>
                                         <hr/>
                                         {% endfor %}
                                 <div class="row">
