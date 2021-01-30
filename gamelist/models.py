@@ -9,9 +9,14 @@ class Company(models.Model):
     def __str__(self):
         return (self.name)
 
+class GameGenre(models.Model):
+    genre = models.CharField(max_length=20)
+
+    def __str__(self):
+        return (self.genre)
+
 class GamesCollection(models.Model):
     name = models.CharField(max_length=20)
-    genre = models.CharField(max_length=12)
    # developer = models.CharField(max_length=12)
 
     cover = models.ImageField(default='default_cover.jpg', upload_to='game_cover')
@@ -19,12 +24,12 @@ class GamesCollection(models.Model):
     #calculated
     score = models.IntegerField
 
-    genre = models.CharField(max_length=12)
     platforms = models.CharField(max_length=8)
 
     currently_playing = models.BooleanField
 
     belong_to_company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    genre = models.ForeignKey(GameGenre, on_delete=models.CASCADE)
 
     def __str__(self):
         return (self.name)

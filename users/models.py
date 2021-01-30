@@ -26,6 +26,10 @@ class Profile(models.Model):
     #urls
     steam_link = models.CharField(max_length=20)
 
+    #favorite genre
+    #logic that counts how many titles of a certain genre one has in ones collection
+    #greatest number dictates what's ones favorite genre
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user.username)
         super(Profile, self).save(*args, **kwargs)
