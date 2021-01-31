@@ -1,11 +1,7 @@
-console.log('hello')
-
 const gamesBox = document.getElementById('games-box')
 const spinnerBox = document.getElementById('spinner-box')
 const loadBtn = document.getElementById('load-btn')
 const loadBox = document.getElementById('loading-box')
-
-
 
 
 let visible = 8
