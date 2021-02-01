@@ -1,14 +1,25 @@
 {% load static %}
 
-<div id="content-box" class="col-6">
+<div id="content-box" class="text-center">
   {% if context %}
-    <ul>
-    {% for artist in context %}
-      <li>{{ artist.name }}</li>
-    {% endfor %}
-    </ul>
-  {% else %}
-    <p>No artists found.</p>
+    <table class="table" id="table-half">
+      <thead>
+        <th>Title</th>
+        <th>Developer</th>
+      </thead>
+      <tbody>
+        {% for i in context %}
+        <tr>
+            <td>
+              <a href="{% url 'game-detail' i.pk %}"">
+                {{ i.name }}
+              </a>
+            </td>
+            <td>{{ i.genre }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   {% endif %}
 </div>
 

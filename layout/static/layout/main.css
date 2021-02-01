@@ -159,3 +159,13 @@ body{
 .not-visible {
     display: none;
 }
+
+#table-half {
+    background-color: #fff;
+    width: 20%;
+    border: 1px solid;
+    position: absolute;
+    z-index: 1;
+    right: 0px;
+    top: 43px;
+}
