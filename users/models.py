@@ -6,6 +6,11 @@ from django.utils.text import slugify
 from PIL import Image
 # Create your models here.
     
+class Platform(models.Model):
+    platform = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.platform
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -18,7 +23,8 @@ class Profile(models.Model):
     nickname = models.CharField(max_length=18)
     bio = models.TextField(max_length=450)
 
-    platform_used = models.CharField(max_length=30)
+    platform_used = models.ManyToManyField(Platform)
+
     #todo: specs (as another model? also completed games)
 
     #experimental

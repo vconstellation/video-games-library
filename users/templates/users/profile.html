@@ -1,6 +1,5 @@
 {% extends "layout/base.html" %}
 {% block content %}
-
 <div class="jumbotron jumbo-profile" style="background-image: url('{{ user.profile.background_image.url }}')";>
     <div class="container container-relative">
         <div class="profile-img">
@@ -42,7 +41,7 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a class="profile-edit-btn" href="{% url 'profile-update' %}">Edit Profile</a>
+                        <a class="profile-edit-btn" href="{% url 'profile-update' slug=user.profile.slug %}">Edit Profile</a>
                     </div>
                 </div>
                 <div class="row">
@@ -68,7 +67,9 @@
                                                 <label>Primary platform</label>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{ user.profile.platform_used }}</p>
+                                                {% for i in user.profile.platform_used.all %}
+                                                    <p>{{ i }}</p>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="row">

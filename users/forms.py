@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile, ProfileGamesCollection
+from .models import Profile, ProfileGamesCollection, Platform
 
 platform = [
         ('PC', 'PC'),
@@ -7,16 +7,21 @@ platform = [
         ]
 
 class ProfileUpdateForm(forms.ModelForm):
-    platform = [
-            ('PC', 'PC'),
-            ('XBOX', 'XBOX')
-            ]
+    # platform = [
+    #         ('PC', 'PC'),
+    #         ('XBOX', 'XBOX')
+    #         ]
 
-    platform_checkbox = forms.MultipleChoiceField(choices = platform, widget = forms.CheckboxSelectMultiple())
+    #platform_checkbox = forms.MultipleChoiceField(choices = platform, widget = forms.CheckboxSelectMultiple())
 
+    
     class Meta:
         model = Profile
-        exclude = ['user', 'review', 'game', 'platform_used', 'slug', 'hardware']
+        fields = ['avatar', 'nickname', 'bio', 'platform_used', 'steam_link']
+        #exclude = ['user', 'review', 'game', 'slug']
+
+    platform_used = forms.ModelMultipleChoiceField(queryset=Platform.objects.all(),
+                                                    widget=forms.CheckboxSelectMultiple)
        # fields = '__all__
 
 class ProfileGameCollectionUpdate(forms.ModelForm):

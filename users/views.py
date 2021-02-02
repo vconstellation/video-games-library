@@ -3,12 +3,21 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 from .models import Profile, ProfileGamesCollection
 from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    model = Profile
+    form_class = ProfileUpdateForm
+    template_name = 'users/profile_update.html'
+    
+    def get_success_url(self):
+        return reverse_lazy('profile', kwargs={'slug': self.object.slug})
 
 def register(request):
     if request.method == 'POST':
@@ -21,24 +30,24 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-@login_required
-def profile_update(request):
-    if request.method == 'POST':
-        form = ProfileUpdateForm(request.POST,
-                                 request.FILES,
-                                 instance=request.user.profile)
-        if form.is_valid():
-            temp_save = form.save(commit=False)
-            checkbox = form.cleaned_data['platform_checkbox']
-            temp_save.platform_used = str(checkbox)
-            temp_save.save()
-            return redirect('profile', slug=request.user.profile.user)
+# @login_required
+# def profile_update(request):
+#     if request.method == 'POST':
+#         form = ProfileUpdateForm(request.POST,
+#                                  request.FILES,
+#                                  instance=request.user.profile)
+#         if form.is_valid():
+#             temp_save = form.save(commit=False)
+#             checkbox = form.cleaned_data['platform_used']
+#             temp_save.platform_used = checkbox
+#             temp_save.save()
+#             return redirect('profile', slug=request.user.profile.user)
 
-    else:
-        form = ProfileUpdateForm(instance=request.user.profile)
+#     else:
+#         form = ProfileUpdateForm(instance=request.user.profile)
 
-    context = form
-    return render(request, 'users/profile_update.html', {'context': context})
+#     context = form
+#     return render(request, 'users/profile_update.html', {'context': context})
 
 @login_required
 def profile_game_collection_update(request):
