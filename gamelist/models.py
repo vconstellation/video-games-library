@@ -41,6 +41,7 @@ class GamesCollection(models.Model):
 
         if img.height > 191 or img.width > 264:
             output_size = (191, 264)
+            img = Image.open(self.avatar.path).resize(output_size)
             img.thumbnail(output_size)
             img.save(self.cover.path)
 

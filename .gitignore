@@ -9,6 +9,9 @@ __pycache__/
 # Ignore media files
 *.jpg
 
+# Avatars and media
+media/profile_av/
+
 # Distribution / packaging
 .Python
 build/

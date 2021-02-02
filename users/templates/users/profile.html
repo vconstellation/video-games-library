@@ -1,18 +1,19 @@
 {% extends "layout/base.html" %}
 {% block content %}
 
+<div class="jumbotron jumbo-profile" style="background-image: url('{{ user.profile.background_image.url }}')";>
+    <div class="container container-relative">
+        <div class="profile-img">
+            <img class="rounded-circle" src="{{ user.profile.avatar.url }}" alt=""/>
+        </div>
+        <h1>test</h1>
+    </div>
+</div>
+
         <div class="container emp-profile">
             <form method="post">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="profile-img">
-                            <img src="{{ user.profile.avatar.url }}" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="col-md-4"></div>
                     <div class="col-md-6">
                         <div class="profile-head">
                                     <h5>

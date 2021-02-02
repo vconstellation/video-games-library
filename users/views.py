@@ -10,11 +10,6 @@ from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
 
-
-# class ProfileGamesCollectionUpdateView(LoginRequiredMixin, UpdateView):
-#     model = ProfileGamesCollection
-#     form_class = ProfileGameCollectionUpdate
-
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)

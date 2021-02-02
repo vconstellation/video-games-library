@@ -16,7 +16,7 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        exclude = ['user', 'review', 'game', 'platform_used', 'slug']
+        exclude = ['user', 'review', 'game', 'platform_used', 'slug', 'hardware']
        # fields = '__all__
 
 class ProfileGameCollectionUpdate(forms.ModelForm):

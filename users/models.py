@@ -5,27 +5,12 @@ from gamelist.models import GamesCollection, GamesReviews
 from django.utils.text import slugify
 from PIL import Image
 # Create your models here.
-
-class ProfileHardware(models.Model):
-    platform_type = models.CharField(max_length=10)
-
-    gpu = models.CharField(max_length=12)
-    gpu_memory = models.CharField(max_length=6)
-
-    cpu = models.CharField(max_length=10)
-    cpu_speed = models.CharField(max_length=6)
-
-    power_supply = models.CharField(max_length=12)
-
-    storage = models.CharField(max_length=20)
-    
-    memory = models.CharField(max_length=12)
-
     
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(default='default.jpg', upload_to='profile_av')
+    background_image = models.ImageField(default='default-bg.jpg', upload_to='profile_bg')
 
     slug = models.SlugField(null=True, unique=True)
 
@@ -33,8 +18,7 @@ class Profile(models.Model):
     nickname = models.CharField(max_length=18)
     bio = models.TextField(max_length=450)
 
-    #platform_used = models.CharField(max_length=30)
-    platform_used = models.ForeignKey(ProfileHardware, on_delete=models.CASCADE, null=True)
+    platform_used = models.CharField(max_length=30)
     #todo: specs (as another model? also completed games)
 
     #experimental
@@ -56,8 +40,14 @@ class Profile(models.Model):
 
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
+            img = Image.open(self.avatar.path).resize(output_size)
             img.thumbnail(output_size)
             img.save(self.avatar.path)
+
+        # if img.height > 300 or img.width > 300:
+        #     output_size = (200, 500)
+        #     img.thumbnail(output_size)
+        #     img.save(self.avatar.path)
 
 #ManyToMany connecting Profile with GamesCollection
 
