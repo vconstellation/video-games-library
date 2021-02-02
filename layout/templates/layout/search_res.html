@@ -1,17 +1,17 @@
 {% load static %}
 
 <div id="content-box" class="text-center">
-  {% if context %}
+  {% if search_context %}
     <table class="table" id="table-half">
       <thead>
         <th>Title</th>
         <th>Developer</th>
       </thead>
       <tbody>
-        {% for i in context %}
+        {% for i in search_context %}
         <tr>
             <td>
-              <a href="{% url 'game-detail' i.pk %}"">
+              <a href="{% url 'game-detail' i.pk %}">
                 {{ i.name }}
               </a>
             </td>

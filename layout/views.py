@@ -21,7 +21,7 @@ def home(request):
 
 def search_bar(request):
     url_parameter = request.GET.get('q')
-
+    
     if url_parameter:
         games = GamesCollection.objects.filter(name__icontains=url_parameter)
     else:
@@ -30,7 +30,7 @@ def search_bar(request):
     if request.is_ajax():
         html = render_to_string(
             template_name='layout/search_res.html',
-            context={'context': games}
+            context={'search_context': games}
         )
         
         data_dict = {'html_from_view': html}

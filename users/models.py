@@ -6,6 +6,23 @@ from django.utils.text import slugify
 from PIL import Image
 # Create your models here.
 
+class ProfileHardware(models.Model):
+    platform_type = models.CharField(max_length=10)
+
+    gpu = models.CharField(max_length=12)
+    gpu_memory = models.CharField(max_length=6)
+
+    cpu = models.CharField(max_length=10)
+    cpu_speed = models.CharField(max_length=6)
+
+    power_supply = models.CharField(max_length=12)
+
+    storage = models.CharField(max_length=20)
+    
+    memory = models.CharField(max_length=12)
+
+    
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = models.ImageField(default='default.jpg', upload_to='profile_av')
@@ -16,7 +33,8 @@ class Profile(models.Model):
     nickname = models.CharField(max_length=18)
     bio = models.TextField(max_length=450)
 
-    platform_used = models.CharField(max_length=30)
+    #platform_used = models.CharField(max_length=30)
+    platform_used = models.ForeignKey(ProfileHardware, on_delete=models.CASCADE, null=True)
     #todo: specs (as another model? also completed games)
 
     #experimental
@@ -50,4 +68,6 @@ class ProfileGamesCollection(models.Model):
 
     currently_playing = models.BooleanField(null=False, default=False)
     finished = models.BooleanField(null=False, default=False)
+
+
 
