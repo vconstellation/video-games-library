@@ -171,3 +171,8 @@ body{
     right: 0px;
     top: 43px;
 }
+
+.img-mini {
+    width: 15%;
+    height: 15%;
+}

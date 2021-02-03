@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import GamesCollectionForm, GamesCollectionAddForm
 from .models import GamesCollection
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, View, TemplateView
+from django.views.generic import DetailView, View, TemplateView, ListView
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
 from django.http import JsonResponse
@@ -22,9 +22,11 @@ def create_game(request):
 #     model = GamesCollection
 #     paginate_by = 8
 
-class GamesCollectionListView(TemplateView):
+class GamesCollectionListView(ListView):
     template_name = 'gamelist/games-list.html'
     model = GamesCollection
+    
+    
 
 class GamesCollectionDetailView(LoginRequiredMixin, FormMixin, DetailView):
     model = GamesCollection

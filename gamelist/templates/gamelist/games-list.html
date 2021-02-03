@@ -4,17 +4,34 @@
 
 <h1> List View Test</h1>
 <div class="scrolling-wrapper text-center">
-    {% for i in object_list %}
-    <div class="card">
-        <figure>
-            <a href="{% url 'game-detail' i.pk%}">
-                <img src="{{ i.cover.url }}">
-                <figcaption>{{ i.name }}</figcaption>
-            </a>
-        </figure>
-    </div>
-    {% endfor %}
-</div>
+    <table class="table">
+        <thead>
+            <th>Cover</th>
+            <th>Title</th>
+            <th>Year released</th>
+            <th>Developer</th>
+            <th>Platform</th>
+            <th>Genre</th>
+        </thead>
+        <tbody>
+            {% for i in object_list %}
+            <tr>
+                <td>
+                    <img class="img-mini" src="{{ i.cover.url }}">
+                </td>
+                <td>{{ i.name }}</td>
+                <td>[placeholder year]</td>
+                <td>{{ i.belong_to_company }}</td>
+                <td>
+                    {% for j in i.game_platform.all %}
+                        {{ j.game_platform }}
+                    {% endfor %}
+                </td>
+                <td>{{ i.genre }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+
 
 {% endblock %}
 
