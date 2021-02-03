@@ -15,6 +15,12 @@ class GameGenre(models.Model):
     def __str__(self):
         return (self.genre)
 
+class GamePlatform(models.Model):
+    game_platform = models.CharField(max_length=10)
+
+    def __str__(self):
+        return (self.game_platform)
+
 class GamesCollection(models.Model):
     name = models.CharField(max_length=20)
    # developer = models.CharField(max_length=12)
@@ -24,7 +30,8 @@ class GamesCollection(models.Model):
     #calculated
     score = models.IntegerField
 
-    platforms = models.CharField(max_length=8)
+    #platforms = models.CharField(max_length=8)
+    game_platform = models.ManyToManyField(GamePlatform)
 
     currently_playing = models.BooleanField
 

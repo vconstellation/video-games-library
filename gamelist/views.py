@@ -24,6 +24,7 @@ def create_game(request):
 
 class GamesCollectionListView(TemplateView):
     template_name = 'gamelist/games-list.html'
+    model = GamesCollection
 
 class GamesCollectionDetailView(LoginRequiredMixin, FormMixin, DetailView):
     model = GamesCollection
