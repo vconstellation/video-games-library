@@ -176,3 +176,44 @@ body{
     width: 15%;
     height: 15%;
 }
+
+/* CSS Used to create Fade-in on Game Cover */
+
+.container-cover {
+    position: relative;
+    width: 50%;
+  }
+  
+  .image-cover {
+    opacity: 1;
+    display: block;
+    /* width: 100%;
+    height: auto; */
+    transition: .5s ease;
+    backface-visibility: hidden;
+  }
+  
+  .middle-cover {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%)
+  }
+  
+  .container-cover:hover .image-cover {
+    opacity: 0.3;
+  }
+  
+  .container-cover:hover .middle-cover {
+    opacity: 1;
+  }
+  
+  .text-cover {
+    background-color: #f6912d;
+    color: black;
+    font-size: 16px;
+    padding: 8px 12px;
+  }

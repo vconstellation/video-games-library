@@ -3,26 +3,43 @@
 {% block content %}
 
 <div>
-        <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <legend>Register a new GAME</legend>
-                {{ form|crispy }}
-            </fieldset>
-            <div>
-                <button type="submit">Add the game!</button>
-            </div>
-        </form>
-</div>
-<div>
     <div class="container emp-profile">
-        <h1>Detail View Test</h1>
-        <h2>Name:</h2>
-        <h2>{{ object.name }}</h2>
-        <h2>Genre:</h2>
-        <h2>{{ object.genre }}</h2>
-        <h2>Platforms: </h2>
-        <h2>{{ object.platforms }}</h2>
+        <div class="row">
+            <div class="col-4">
+                <div class="container-cover">
+                    <img src="{{ object.cover.url }}" alt="cover_art" class="image-cover">
+                    <div class="middle-cover">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {{ form|crispy }}
+                            </fieldset>
+                            <div>
+                                <button class="text-cover" type="submit">Add to collection!</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="text">
+                                <h2>{{ object.name }}</h2>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <h5>{{ object.belong_to_company }}</h5>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="container">
+                    <p>{{ object.description }}</p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

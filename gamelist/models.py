@@ -38,6 +38,8 @@ class GamesCollection(models.Model):
     belong_to_company = models.ForeignKey(Company, on_delete=models.CASCADE)
     genre = models.ForeignKey(GameGenre, on_delete=models.CASCADE)
 
+    description = models.TextField(max_length=450, null=True)
+
     def __str__(self):
         return (self.name)
 
