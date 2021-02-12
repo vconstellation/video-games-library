@@ -24,7 +24,7 @@
                 <td>{{ i.belong_to_company }}</td>
                 <td>
                     {% for j in i.game_platform.all %}
-                        {{ j.game_platform }}
+                        {{ j.game_platform }},
                     {% endfor %}
                 </td>
                 <td>{{ i.genre }}</td>
