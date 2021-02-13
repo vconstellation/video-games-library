@@ -37,9 +37,10 @@
                 <hr>
                 <div class="container">
                     <p>{{ object.description }}</p>
+                    <p>No of people that have {{ object.name }} in their collection: {{ object.profilegamescollection_set.all | length }}</p>
                 </div>
             </div>
-        </div>
+        </div>  
     </div>
 </div>
 {% endblock %}

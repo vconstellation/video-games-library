@@ -32,3 +32,9 @@ class ProfileGameCollectionUpdate(forms.ModelForm):
         #     'games_collection': forms.CheckboxSelectMultiple()
         # }
 
+class ProfileGameCollectionSingleItemUpdate(forms.ModelForm):
+    class Meta:
+        model = ProfileGamesCollection
+        fields = ['currently_playing', 'finished']
+    
+

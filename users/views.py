@@ -5,8 +5,8 @@ from django.views.generic import TemplateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .models import Profile, ProfileGamesCollection
-from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate
-
+from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate, ProfileGameCollectionSingleItemUpdate
+    
 
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile.html'
@@ -80,10 +80,35 @@ def profile_game_collection_update(request):
 def profile_game_collection_remove(request, pk, slug):
     user_profile = request.user.profile
     game = user_profile.profilegamescollection_set.get(pk=pk)
-    game.delete()
-        
-    return redirect('profile', slug=request.user.profile.slug)
+    if slug == user_profile.slug:
+        game.delete()
+        return redirect('profile', slug=request.user.profile.slug)
+    #else condition if not authenticated
 
+@login_required
+def profile_single_game_update(request, pk, slug):
+    user_profile = request.user.profile
+    game = user_profile.profilegamescollection_set.get(pk=pk)
+    if slug == user_profile.slug:
+        if request.method == 'POST':
+            form = ProfileGameCollectionSingleItemUpdate(request.POST, instance=user_profile)
+            if form.is_valid():
+                playing = form.cleaned_data['currently_playing']
+                finished_obj = form.cleaned_data['finished']
+                game_obj = game.games_collection
+
+                ProfileGamesCollection.objects.filter(pk=game.pk).update(currently_playing=playing)
+                ProfileGamesCollection.objects.filter(pk=game.pk).update(finished=finished_obj)
+        else:
+            form = ProfileGameCollectionSingleItemUpdate(request.POST, instance=user_profile)
+                
+        context = {'form': form,
+                    'game': game}
+        
+
+        return render(request, 'users/update_single.html', {'context': context})
+        
+    #return redirect('profile', slug=request.user.profile.slug)
 
 
     

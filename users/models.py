@@ -67,3 +67,4 @@ class ProfileGamesCollection(models.Model):
 
 
 
+

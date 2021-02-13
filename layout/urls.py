@@ -23,4 +23,5 @@ urlpatterns = [
     path('games/list/', game_views.GamesCollectionListView.as_view(template_name='gamelist/games-list.html'), name='games-list'),
     path('games/list/<int:num_games>/', game_views.GamesCollectionJsonListView.as_view(), name='games-list'),
     path('games/<int:pk>/', game_views.GamesCollectionDetailView.as_view(), name='game-detail'),
+    path('profile/<slug:slug>/update/<int:pk>/', user_views.profile_single_game_update, name='profile-single-update')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

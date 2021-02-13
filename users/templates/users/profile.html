@@ -151,6 +151,14 @@
                                                 <a href="{% url 'profile-game-delete' slug=user.profile.slug pk=i.pk %}">Kliknej</a>
                                             </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <label>Update:</label>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <a href="{% url 'profile-single-update' slug=user.profile.slug pk=i.pk %}">Updetnij</a>
+                                            </div>
+                                        </div>
                                         <hr/>
                                         {% endfor %}
                                 <div class="row">
