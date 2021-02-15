@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import GamesCollectionForm, GamesCollectionAddForm
+from .forms import GamesCollectionForm, GamesCollectionAddForm, GamesReviewForm
 from .models import GamesCollection, GamesReviews
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, View, TemplateView, ListView, CreateView
@@ -79,7 +79,7 @@ class GamesCollectionJsonListView(View):
 class GameReviewCreateView(CreateView):
     model = GamesReviews
     template_name = 'gamelist/review_create.html'
-    fields = ['review']
+    form_class = GamesReviewForm
     
 
     def get_success_url(self):

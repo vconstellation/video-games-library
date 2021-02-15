@@ -62,7 +62,7 @@ class GamesReviews(models.Model):
     review = models.TextField(max_length=600)
 
     #scale 1 to 5?
-    review_score = models.IntegerField(null=True)
+    review_score = models.IntegerField()
 
     #Mayhaps add a detailed scoring - score for music, plot, etc
 

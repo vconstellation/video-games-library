@@ -2,6 +2,10 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+{% for i in object.gamesreviews_set.all %}
+    {{ i.review_score }}
+{% endfor %}
+
 <div>
     <div class="container emp-profile">
         <div class="row">
