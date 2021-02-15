@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import GamesCollectionForm, GamesCollectionAddForm
-from .models import GamesCollection
+from .models import GamesCollection, GamesReviews
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView, View, TemplateView, ListView
+from django.views.generic import DetailView, View, TemplateView, ListView, CreateView
 from django.views.generic.edit import FormMixin
 from django.urls import reverse
 from django.http import JsonResponse
+
+### Game Collection block ###
 
 def create_game(request):
     if request.method == 'POST':
@@ -69,3 +71,24 @@ class GamesCollectionJsonListView(View):
     
         
         return JsonResponse({'data': games, 'max': max_size}, safe=False)
+
+### End of Games Collection block ###
+
+### Reviews block ###
+
+class GameReviewCreateView(CreateView):
+    model = GamesReviews
+    template_name = 'gamelist/review_create.html'
+    fields = ['review']
+    
+
+    def get_success_url(self):
+        return reverse('game-detail', kwargs={'pk': self.kwargs['pk']})
+
+    #Overriding method in order to pre-populate ForeignKey field [with pk]
+    def form_valid(self, form, **kwargs):
+        review = form.save(commit=False)
+        review.user = self.request.user
+        review.game_reviewed_id = self.kwargs['pk']
+        return super(GameReviewCreateView, self).form_valid(form)
+        

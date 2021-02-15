@@ -18,7 +18,7 @@ const handleGetData = () => {
                 data.map(game=>{
                     console.log(game.id)
                     gamesBox.innerHTML += `<div class="card">
-                                                <a href="games/${game.id}/">${game.name}</a>
+                                                <a href="games/detail/${game.id}/">${game.name}</a>
                                                 <br>
                                                 <img src="media/${game.cover}">
                                             </div>`

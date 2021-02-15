@@ -39,6 +39,23 @@
                     <p>{{ object.description }}</p>
                     <p>No of people that have {{ object.name }} in their collection: {{ object.profilegamescollection_set.all | length }}</p>
                 </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10">
+                            <h5>Tutaj będą oceny z recenzji</h5>
+                                <hr>
+                                <p>Reviews:</p>
+                                <p>
+                                    {% for i in object.gamesreviews_set.all %}
+                                        {{ i.review }}
+                                    {% endfor %}
+                                </p>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="profile-edit-btn" href="{% url 'review-create' object.pk %}">Add a review</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>  
     </div>

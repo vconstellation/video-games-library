@@ -17,11 +17,12 @@ urlpatterns = [
     path('profile/<slug:slug>', user_views.ProfileView.as_view(), name='profile'),
     #path('profile_update/', user_views.profile_update, name='profile-update'),
     path('profile/<slug:slug>/profile_update/', user_views.ProfileUpdateView.as_view(), name='profile-update'),
+    path('profile/<slug:slug>/update/<int:pk>/', user_views.profile_single_game_update, name='profile-single-update'),
     path('game_collection_update/', user_views.profile_game_collection_update, name='profile-game-update'),
     path('profile/<slug:slug>/delete/<int:pk>/', user_views.profile_game_collection_remove, name='profile-game-delete'),
     path('games/create/', game_views.create_game, name='create-game'),
     path('games/list/', game_views.GamesCollectionListView.as_view(template_name='gamelist/games-list.html'), name='games-list'),
     path('games/list/<int:num_games>/', game_views.GamesCollectionJsonListView.as_view(), name='games-list'),
-    path('games/<int:pk>/', game_views.GamesCollectionDetailView.as_view(), name='game-detail'),
-    path('profile/<slug:slug>/update/<int:pk>/', user_views.profile_single_game_update, name='profile-single-update')
+    path('games/detail/<int:pk>/', game_views.GamesCollectionDetailView.as_view(), name='game-detail'),
+    path('games/detail/<int:pk>/create_review/', game_views.GameReviewCreateView.as_view(), name='review-create'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
