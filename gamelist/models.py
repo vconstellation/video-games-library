@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.functions import Coalesce
 from PIL import Image
 
 # Create your models here.
@@ -40,6 +41,35 @@ class GamesCollection(models.Model):
 
     description = models.TextField(max_length=450, null=True)
 
+    ### Returning average of ratings code block ###
+
+    def rating_avg(self):
+        return GamesReviews.objects.filter(game_reviewed=self).aggregate(
+                avg=Coalesce(models.Avg('review_score'), 0),
+            )['avg']
+
+    def music_rating_avg(self):
+        return GamesReviews.objects.filter(game_reviewed=self).aggregate(
+                avg=Coalesce(models.Avg('music_score'), 0),
+            )['avg']
+    
+    def story_rating_avg(self):
+        return GamesReviews.objects.filter(game_reviewed=self).aggregate(
+                avg=Coalesce(models.Avg('story_score'), 0),
+            )['avg']
+
+    def visual_rating_avg(self):
+        return GamesReviews.objects.filter(game_reviewed=self).aggregate(
+                avg=Coalesce(models.Avg('visual_score'), 0),
+            )['avg']
+        
+    def gameplay_rating_avg(self):
+        return GamesReviews.objects.filter(game_reviewed=self).aggregate(
+                avg=Coalesce(models.Avg('gameplay_score'), 0),
+            )['avg']
+
+    ### End of block ###
+
     def __str__(self):
         return (self.name)
 
@@ -59,10 +89,22 @@ class GamesReviews(models.Model):
     #ForeignKey, MtO, Many Reviews to each Game
     game_reviewed = models.ForeignKey(GamesCollection, on_delete=models.CASCADE)
 
+    #experimental 16.02.2021 foreignkey to author
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+
     review = models.TextField(max_length=600)
 
     #scale 1 to 5?
     review_score = models.IntegerField()
+
+    music_score = models.IntegerField()
+    story_score = models.IntegerField()
+    visual_score = models.IntegerField()
+    gameplay_score = models.IntegerField()
+
+    def save(self):
+        self.review_score = (self.music_score + self.story_score + self.visual_score + self.gameplay_score) / 4
+        super(GamesReviews, self).save()
 
     #Mayhaps add a detailed scoring - score for music, plot, etc
 

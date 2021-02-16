@@ -1,6 +1,6 @@
 from django import forms
-from .models import GamesCollection
-from users.models import ProfileGamesCollection, GamesReviews
+from .models import GamesCollection, GamesReviews
+from users.models import ProfileGamesCollection
 
 class GamesCollectionForm(forms.ModelForm):
     class Meta:
@@ -23,7 +23,15 @@ class GamesReviewForm(forms.ModelForm):
 
     class Meta:
         model = GamesReviews
-        fields = ['review', 'review_score']
+        fields = ['review', 'story_score', 'music_score', 'gameplay_score', 'visual_score']
 
-    review_score = forms.ChoiceField(choices = score_range,
+    visual_score = forms.ChoiceField(choices = score_range,
+                                                    widget=forms.RadioSelect)
+    music_score = forms.ChoiceField(choices = score_range,
+                                                    widget=forms.RadioSelect)
+    # review_score = forms.ChoiceField(choices = score_range,
+    #                                                 widget=forms.RadioSelect)
+    story_score = forms.ChoiceField(choices = score_range,
+                                                    widget=forms.RadioSelect)
+    gameplay_score = forms.ChoiceField(choices = score_range,
                                                     widget=forms.RadioSelect)

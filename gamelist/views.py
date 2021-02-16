@@ -88,7 +88,7 @@ class GameReviewCreateView(CreateView):
     #Overriding method in order to pre-populate ForeignKey field [with pk]
     def form_valid(self, form, **kwargs):
         review = form.save(commit=False)
-        review.user = self.request.user
+        review.author = self.request.user
         review.game_reviewed_id = self.kwargs['pk']
         return super(GameReviewCreateView, self).form_valid(form)
         

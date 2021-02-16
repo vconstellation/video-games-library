@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-from gamelist.models import GamesCollection, GamesReviews
+from gamelist.models import GamesCollection
 from django.utils.text import slugify
 from PIL import Image
 # Create your models here.
@@ -28,7 +28,7 @@ class Profile(models.Model):
     #todo: specs (as another model? also completed games)
 
     #experimental
-    review = models.ManyToManyField(GamesReviews)
+    # review = models.ManyToManyField(GamesReviews)
     game = models.ManyToManyField(GamesCollection, through='ProfileGamesCollection')
 
     #urls

@@ -217,3 +217,12 @@ body{
     font-size: 16px;
     padding: 8px 12px;
   }
+
+/* END OF BLOCk */
+
+/* REVIEW BLOCK */
+
+.review-right {
+    border-right: 1px dashed black;
+
+}
