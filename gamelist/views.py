@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import GamesCollectionForm, GamesCollectionAddForm, GamesReviewForm
-from .models import GamesCollection, GamesReviews
+from .models import GamesCollection, GamesReviews, Company, GameGenre
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, View, TemplateView, ListView, CreateView
 from django.views.generic.edit import FormMixin
@@ -92,3 +92,6 @@ class GameReviewCreateView(CreateView):
         review.game_reviewed_id = self.kwargs['pk']
         return super(GameReviewCreateView, self).form_valid(form)
         
+class CompanyDetailView(DetailView):
+    model = Company
+    template_name = 'gamelist/company_detail.html'

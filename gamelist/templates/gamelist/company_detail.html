@@ -1,0 +1,14 @@
+{% extends "layout/base.html" %}
+{% block content %}
+<p>Company Detail View</p>
+
+<p>> list of created games</p>
+<p>{{ object.name }}</p>
+
+{% for i in object.gamescollection_set.all %}
+    <a href="{% url 'game-detail' i.pk %}">
+        <p>{{ i.name }}</p>
+    </a>
+{% endfor %}
+
+{% endblock %}

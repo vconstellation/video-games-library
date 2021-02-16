@@ -21,7 +21,11 @@
                 </td>
                 <td>{{ i.name }}</td>
                 <td>[placeholder year]</td>
-                <td>{{ i.belong_to_company }}</td>
+                <td>
+                    <a href="{% url 'company-detail' i.belong_to_company.pk %}">
+                        {{ i.belong_to_company }}
+                    </a>
+                </td>
                 <td>
                     {% for j in i.game_platform.all %}
                         {{ j.game_platform }},

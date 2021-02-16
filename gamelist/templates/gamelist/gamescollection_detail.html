@@ -44,7 +44,9 @@
                             </div>
                         </div>
                         <div class="col">
-                            <h5>{{ object.belong_to_company }}</h5>
+                            <a href="{% url 'company-detail' object.belong_to_company.pk %}">
+                                <h5>{{ object.belong_to_company }}</h5>
+                            </a>
                         </div>
                     </div>
                 </div>
