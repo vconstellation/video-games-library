@@ -76,23 +76,73 @@
 
     <div class="container emp-profile">
         <div class="row">
-            <div class="col-4 review-right">
-                <div class="card">
-                    <h4 class="text-muted">Reviews</h4>
-                    {% for i in object.gamesreviews_set.all|slice:":3" %}
-                    <h5>{{ i.author }}</h5>
-                    <p>{{ i.review }}</p>
-                    {% endfor %}
-                    
-                </div>
+            <div class="col-4 review-right text-center">
+                <h4>Total score</h4>
+                <span class="material-icons md-72">check_circle</span>
+                <h3>{{ object.rating_avg|floatformat:1 }}</h3>
+                <p>out of {{ object.gamesreviews_set.all.count }} reviews</p>
+                
             </div>
             <div class="col-8">
-                Test
+                <div class="row text-center">
+                    <div class="col">
+                        <h5>Visuals<h5>
+                        {% if object.visual_rating_avg < 1.5 %}
+                        <span class="material-icons md-48 review-red">hd</span>
+                        {% elif object.visual_rating_avg > 1.5 and object.visual_rating_avg < 3.5 %}
+                        <span class="material-icons md-48 review-yellow">hd</span>
+                        {% else %}
+                        <span class="material-icons md-48 review-green">hd</span>
+                        {% endif %}
+                        <h3>{{ object.visual_rating_avg|floatformat:1 }}</h3>
+                    </div>
+                    <div class="col">
+                        <h5>Gameplay</h5>
+                        {% if object.gameplay_rating_avg < 1.5 %}
+                        <span class="material-icons md-48 review-red">sports_esports</span>
+                        {% elif object.gameplay_rating_avg > 1.5 and object.gameplay_rating_avg < 3.5 %}
+                        <span class="material-icons md-48 review-yellow">sports_esports</span>
+                        {% else %}
+                        <span class="material-icons md-48 review-green">sports_esports</span>
+                        {% endif %}
+                        <h3>{{ object.gameplay_rating_avg|floatformat:1 }}</h3>
+                    </div>
+                    <div class="col">
+                        <h5>Music</h5>
+                        {% if object.music_rating_avg < 1.5 %}
+                        <span class="material-icons md-48 review-red">speaker</span>
+                        {% elif object.music_rating_avg > 1.5 and object.music_rating_avg < 3.5 %}
+                        <span class="material-icons md-48 review-yellow">speaker</span>
+                        {% else %}
+                        <span class="material-icons md-48 review-green">speaker</span>
+                        {% endif %}
+                        <h3>{{ object.music_rating_avg|floatformat:1 }}</h3>
+                    </div>
+                    <div class="col">
+                        <h5>Story</h5>
+                        {% if object.story_rating_avg < 1.5 %}
+                        <span class="material-icons md-48 review-red">history_edu</span>
+                        {% elif object.story_rating_avg > 1.5 and object.story_rating_avg < 3.5 %}
+                        <span class="material-icons md-48 review-yellow">history_edu</span>
+                        {% else %}
+                        <span class="material-icons md-48 review-green">history_edu</span>
+                        {% endif %}
+                        <h3>{{ object.story_rating_avg|floatformat:1 }}</h3>
+                    </div>
+                </div>
+                <hr>
             </div>
             
         </div>  
     </div>
 </div>
 
-
+<div class="card">
+    <h4 class="text-muted">Reviews</h4>
+    {% for i in object.gamesreviews_set.all|slice:":3" %}
+    <h5>{{ i.author }}</h5>
+    <p>{{ i.review }}</p>
+    {% endfor %}
+    
+</div>
 {% endblock %}
