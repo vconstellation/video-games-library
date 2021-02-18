@@ -27,6 +27,7 @@ def create_game(request):
 class GamesCollectionListView(ListView):
     template_name = 'gamelist/games-list.html'
     model = GamesCollection
+    paginate_by = 8
     
     
 

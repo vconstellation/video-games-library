@@ -10,6 +10,7 @@
             <th>Title</th>
             <th>Year released</th>
             <th>Developer</th>
+            <th>Score</th>
             <th>Platform</th>
             <th>Genre</th>
         </thead>
@@ -26,6 +27,7 @@
                         {{ i.belong_to_company }}
                     </a>
                 </td>
+                <td>{{ i.rating_avg|floatformat:1 }}</td>
                 <td>
                     {% for j in i.game_platform.all %}
                         {{ j.game_platform }},
