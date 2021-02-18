@@ -83,6 +83,9 @@
                 <span class="material-icons md-72">check_circle</span>
                 <h3>{{ object.rating_avg|floatformat:1 }}</h3>
                 <p>out of {{ object.gamesreviews_set.all.count }} reviews</p>
+                <a href="{% url 'game-review' object.pk %}">
+                    <h4>Wszystkie recenzje</h4>
+                </a>
                 
             </div>
             <div class="col-8">

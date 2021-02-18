@@ -93,6 +93,15 @@ class GameReviewCreateView(CreateView):
         review.game_reviewed_id = self.kwargs['pk']
         return super(GameReviewCreateView, self).form_valid(form)
         
+class GameReviewListView(ListView):
+    model = GamesReviews
+    template_name = 'gamelist/review_list.html'
+
+    def get_queryset(self):
+        return GamesReviews.objects.filter(game_reviewed=self.kwargs.get('pk'))
+
 class CompanyDetailView(DetailView):
     model = Company
     template_name = 'gamelist/company_detail.html'
+
+

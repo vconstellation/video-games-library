@@ -24,6 +24,7 @@ urlpatterns = [
     path('games/list/', game_views.GamesCollectionListView.as_view(template_name='gamelist/games-list.html'), name='games-list'),
     path('games/list/<int:num_games>/', game_views.GamesCollectionJsonListView.as_view(), name='games-list'),
     path('games/detail/<int:pk>/', game_views.GamesCollectionDetailView.as_view(), name='game-detail'),
+    path('games/detail/<int:pk>/reviews/', game_views.GameReviewListView.as_view(), name='game-review'),
     path('games/detail/<int:pk>/create_review/', game_views.GameReviewCreateView.as_view(), name='review-create'),
     path('company/<int:pk>/', game_views.CompanyDetailView.as_view(), name='company-detail'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
