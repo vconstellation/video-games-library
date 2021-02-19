@@ -66,6 +66,14 @@ class Profile(models.Model):
         #     img.thumbnail(output_size)
         #     img.save(self.avatar.path)
 
+    
+    def calculate_finished_games(self):
+        return ProfileGamesCollection.objects.filter(profile=self, finished=True).count()
+
+
+    # def calculate_total(self):
+
+
 #ManyToMany connecting Profile with GamesCollection
 
 class ProfileGamesCollection(models.Model):
@@ -75,6 +83,7 @@ class ProfileGamesCollection(models.Model):
 
     currently_playing = models.BooleanField(null=False, default=False)
     finished = models.BooleanField(null=False, default=False)
+
 
 
 

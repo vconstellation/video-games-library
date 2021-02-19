@@ -77,7 +77,7 @@ class GamesCollectionJsonListView(View):
 
 ### Reviews block ###
 
-class GameReviewCreateView(CreateView):
+class GameReviewCreateView(LoginRequiredMixin, CreateView):
     model = GamesReviews
     template_name = 'gamelist/review_create.html'
     form_class = GamesReviewForm
@@ -91,7 +91,11 @@ class GameReviewCreateView(CreateView):
         review = form.save(commit=False)
         review.author = self.request.user
         review.game_reviewed_id = self.kwargs['pk']
-        return super(GameReviewCreateView, self).form_valid(form)
+        #Check if the user has already reviewed the game
+        if GamesReviews.objects.filter(game_reviewed_id=self.kwargs['pk'], author=self.request.user):
+            pass
+        else:
+            return super(GameReviewCreateView, self).form_valid(form)
         
 class GameReviewListView(ListView):
     model = GamesReviews
