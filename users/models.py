@@ -42,6 +42,8 @@ class Profile(models.Model):
         self.slug = slugify(self.user.username)
         super(Profile, self).save(*args, **kwargs)
 
+
+        #Resize and save avatar img
         img = Image.open(self.avatar.path)
 
         if img.height > 300 or img.width > 300:
@@ -49,6 +51,15 @@ class Profile(models.Model):
             img = Image.open(self.avatar.path).resize(output_size)
             img.thumbnail(output_size)
             img.save(self.avatar.path)
+
+        #Resize and save Background img
+        bg_img = Image.open(self.background_image.path)
+
+        if bg_img.height > 1920 or bg_img.width > 1080:
+            output_size = (1920, 1080)
+            bg_img = Image.open(self.background_image.path).resize(output_size)
+            bg_img.thumbnail(output_size)
+            bg_img.save(self.background_image.path)
 
         # if img.height > 300 or img.width > 300:
         #     output_size = (200, 500)

@@ -17,7 +17,7 @@ class ProfileUpdateForm(forms.ModelForm):
     
     class Meta:
         model = Profile
-        fields = ['avatar', 'nickname', 'bio', 'platform_used', 'steam_link']
+        fields = ['avatar', 'background_image', 'nickname', 'bio', 'platform_used', 'steam_link']
         #exclude = ['user', 'review', 'game', 'slug']
 
     platform_used = forms.ModelMultipleChoiceField(queryset=Platform.objects.all(),
