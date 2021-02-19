@@ -32,7 +32,7 @@ class Profile(models.Model):
     game = models.ManyToManyField(GamesCollection, through='ProfileGamesCollection')
 
     #urls
-    steam_link = models.CharField(max_length=20)
+    steam_link = models.CharField(max_length=20, null=True)
 
     #favorite genre
     #logic that counts how many titles of a certain genre one has in ones collection
@@ -70,7 +70,8 @@ class Profile(models.Model):
     def calculate_finished_games(self):
         return ProfileGamesCollection.objects.filter(profile=self, finished=True).count()
 
-
+    def calculate_currently_played_games(self):
+        return ProfileGamesCollection.objects.filter(profile=self, currently_playing=True).count()
     # def calculate_total(self):
 
 
