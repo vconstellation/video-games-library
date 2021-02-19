@@ -1,15 +1,27 @@
 {% extends "layout/home.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div>
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend>Register a new account</legend>
-            {{ form }}
-        </fieldset>
-        <div>
-            <button type="submit"></button>
+    <div class="mx-auto" style="width: 500px;">
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <legend>Register a new account</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div>
+                    <button class="btn btn-primary" type="submit">Register</button>
+                </div>
+            </form>
+            <div class="border-top pt-3">
+                <small class="text-muted">
+                    Already possess an account?<a class="ml-2" href="{% url 'login' %}"> Click over here!</a>
+                </small>
+            </div>
         </div>
-    </form>
     </div>
+</div>
 {% endblock %}
+
+
