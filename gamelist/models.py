@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.functions import Coalesce, Round
+from django.core.validators import MaxValueValidator, MinValueValidator
 from PIL import Image
 
 # Create your models here.
@@ -40,6 +41,9 @@ class GamesCollection(models.Model):
     genre = models.ForeignKey(GameGenre, on_delete=models.CASCADE)
 
     description = models.TextField(max_length=450, null=True)
+
+    year_released = models.IntegerField(validators=[MaxValueValidator(2021), 
+                                                    MinValueValidator(1980)])
 
     ### Returning average of ratings code block ###
 

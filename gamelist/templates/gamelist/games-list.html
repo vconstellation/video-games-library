@@ -21,7 +21,7 @@
                     <img class="img-mini" src="{{ i.cover.url }}">
                 </td>
                 <td>{{ i.name }}</td>
-                <td>[placeholder year]</td>
+                <td>{{ i.year_released }}</td>
                 <td>
                     <a href="{% url 'company-detail' i.belong_to_company.pk %}">
                         {{ i.belong_to_company }}
