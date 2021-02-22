@@ -1,15 +1,21 @@
 {% extends "layout/home.html" %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div>
-    <form method="POST">
-        {% csrf_token %}
-        <fieldset>
-            <legend>Log in</legend>
-            {{ form }}
-        </fieldset>
-        <div>
-            <button type="submit">Authorize</button>
+    <div class="mx-auto" style="width: 500px;">
+        <div class="content-section">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Log in</legend>
+                    {{ form|crispy }}
+                </fieldset>
+                <div>
+                    <button type="submit">Authorize</button>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock %}
+

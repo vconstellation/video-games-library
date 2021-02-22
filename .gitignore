@@ -11,6 +11,7 @@ __pycache__/
 
 # Avatars and media
 media/profile_av/
+media/
 
 # Distribution / packaging
 .Python
