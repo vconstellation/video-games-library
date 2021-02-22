@@ -27,7 +27,7 @@ const handleGetData = () => {
             max_size = res.max
             
             if(max_size) {
-                console.log('done')
+                loadBox.innerHTML = ""
             }
         },
         error: function(err) {
