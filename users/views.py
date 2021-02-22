@@ -1,23 +1,30 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView, UpdateView, DeleteView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import TemplateView, UpdateView, DeleteView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from .models import Profile, ProfileGamesCollection
 from .forms import ProfileUpdateForm, ProfileGameCollectionUpdate, ProfileGameCollectionSingleItemUpdate
     
 
-class ProfileView(LoginRequiredMixin, TemplateView):
+class ProfileView(LoginRequiredMixin, DetailView):
+    model = Profile
     template_name = 'users/profile.html'
 
-class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+class ProfileUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Profile
     form_class = ProfileUpdateForm
     template_name = 'users/profile_update.html'
     
     def get_success_url(self):
         return reverse_lazy('profile', kwargs={'slug': self.object.slug})
+
+    def test_func(self):
+        profile = self.get_object()
+        if self.request.user == profile.user:
+            return  True
+        return False
 
 def register(request):
     if request.method == 'POST':

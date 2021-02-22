@@ -14,7 +14,7 @@ urlpatterns = [
     path('register/', user_views.register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
-    path('profile/<slug:slug>', user_views.ProfileView.as_view(), name='profile'),
+    path('profile/<slug:slug>/', user_views.ProfileView.as_view(), name='profile'),
     #path('profile_update/', user_views.profile_update, name='profile-update'),
     path('profile/<slug:slug>/profile_update/', user_views.ProfileUpdateView.as_view(), name='profile-update'),
     path('profile/<slug:slug>/update/<int:pk>/', user_views.profile_single_game_update, name='profile-single-update'),
