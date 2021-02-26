@@ -37,25 +37,6 @@ def register(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-# @login_required
-# def profile_update(request):
-#     if request.method == 'POST':
-#         form = ProfileUpdateForm(request.POST,
-#                                  request.FILES,
-#                                  instance=request.user.profile)
-#         if form.is_valid():
-#             temp_save = form.save(commit=False)
-#             checkbox = form.cleaned_data['platform_used']
-#             temp_save.platform_used = checkbox
-#             temp_save.save()
-#             return redirect('profile', slug=request.user.profile.user)
-
-#     else:
-#         form = ProfileUpdateForm(instance=request.user.profile)
-
-#     context = form
-#     return render(request, 'users/profile_update.html', {'context': context})
-
 @login_required
 def profile_game_collection_update(request):
     if request.method == 'POST':
@@ -90,7 +71,6 @@ def profile_game_collection_remove(request, pk, slug):
     if slug == user_profile.slug:
         game.delete()
         return redirect('profile', slug=request.user.profile.slug)
-    #else condition if not authenticated
 
 @login_required
 def profile_single_game_update(request, pk, slug):
@@ -115,7 +95,6 @@ def profile_single_game_update(request, pk, slug):
 
         return render(request, 'users/update_single.html', {'context': context})
         
-    #return redirect('profile', slug=request.user.profile.slug)
 
 
     

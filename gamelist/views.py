@@ -20,10 +20,6 @@ def create_game(request):
 
     return render(request, 'gamelist/create-game.html', {'form': form})
 
-# class GamesCollectionListView(ListView):
-#     model = GamesCollection
-#     paginate_by = 8
-
 class GamesCollectionListView(ListView):
     template_name = 'gamelist/games-list.html'
     model = GamesCollection
@@ -60,7 +56,7 @@ class GamesCollectionDetailView(LoginRequiredMixin, FormMixin, DetailView):
         
 
 
-
+#This class feeds data into the search bar
 class GamesCollectionJsonListView(View):
 
     def get(self, *args, **kwargs):

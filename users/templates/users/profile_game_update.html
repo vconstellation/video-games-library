@@ -2,17 +2,6 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="container container-box px-5">
-        <div class="media">
-            <div class="media-body">
-                <h2 class="account-heading">{{ user.username }}</h2>
-                <p class="text-secondary">{{ user.email }}</p>
-                <p class="text-secondary">Czy to dziala?</p>
-                {% for i in user.profile.game.all %}
-                <h2>{{ i.name }}</h2>
-                <h3>{{ i.genre }}</h3>
-                {% endfor %}
-            </div>
-        </div>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset class="form-group">
@@ -23,6 +12,15 @@
                 <button class="btn btn-primary" type="submit">Update</button>
             </div>
         </form>
+        <hr>
+        <div class="media">
+            <div class="media-body">
+                <h3>Games in collection:</h3>
+                {% for i in user.profile.game.all %}
+                <h4>{{ i.name }}</h4>
+                {% endfor %}
+            </div>
+        </div>
     </div>
 
 {% endblock %}

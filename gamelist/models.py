@@ -29,9 +29,6 @@ class GamesCollection(models.Model):
 
     cover = models.ImageField(default='default_cover.jpg', upload_to='game_cover')
 
-    #calculated
-    score = models.IntegerField
-
     #platforms = models.CharField(max_length=8)
     game_platform = models.ManyToManyField(GamePlatform)
 
@@ -93,7 +90,6 @@ class GamesReviews(models.Model):
     #ForeignKey, MtO, Many Reviews to each Game
     game_reviewed = models.ForeignKey(GamesCollection, on_delete=models.CASCADE)
 
-    #experimental 16.02.2021 foreignkey to author
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     review = models.TextField(max_length=600)
@@ -110,5 +106,4 @@ class GamesReviews(models.Model):
         self.review_score = (self.music_score + self.story_score + self.visual_score + self.gameplay_score) / 4
         super(GamesReviews, self).save()
 
-    #Mayhaps add a detailed scoring - score for music, plot, etc
 

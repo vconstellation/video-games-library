@@ -29,8 +29,6 @@ class GamesReviewForm(forms.ModelForm):
                                                     widget=forms.RadioSelect)
     music_score = forms.ChoiceField(choices = score_range,
                                                     widget=forms.RadioSelect)
-    # review_score = forms.ChoiceField(choices = score_range,
-    #                                                 widget=forms.RadioSelect)
     story_score = forms.ChoiceField(choices = score_range,
                                                     widget=forms.RadioSelect)
     gameplay_score = forms.ChoiceField(choices = score_range,

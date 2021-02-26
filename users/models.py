@@ -25,18 +25,10 @@ class Profile(models.Model):
 
     platform_used = models.ManyToManyField(Platform)
 
-    #todo: specs (as another model? also completed games)
-
-    #experimental
-    # review = models.ManyToManyField(GamesReviews)
     game = models.ManyToManyField(GamesCollection, through='ProfileGamesCollection')
 
-    #urls
     steam_link = models.CharField(max_length=20, null=True)
 
-    #favorite genre
-    #logic that counts how many titles of a certain genre one has in ones collection
-    #greatest number dictates what's ones favorite genre
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.user.username)
@@ -61,21 +53,15 @@ class Profile(models.Model):
             bg_img.thumbnail(output_size)
             bg_img.save(self.background_image.path)
 
-        # if img.height > 300 or img.width > 300:
-        #     output_size = (200, 500)
-        #     img.thumbnail(output_size)
-        #     img.save(self.avatar.path)
 
-    
+    #Methods used to return number of finished and currently playing games
     def calculate_finished_games(self):
         return ProfileGamesCollection.objects.filter(profile=self, finished=True).count()
 
     def calculate_currently_played_games(self):
         return ProfileGamesCollection.objects.filter(profile=self, currently_playing=True).count()
-    # def calculate_total(self):
 
 
-#ManyToMany connecting Profile with GamesCollection
 
 class ProfileGamesCollection(models.Model):
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)

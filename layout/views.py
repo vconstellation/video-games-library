@@ -10,15 +10,6 @@ import json
 def home(request):
     return render(request, 'layout/home.html')
 
-# class SerachResListView(ListView):
-#     template_name = 'layout/search_res.html'
-#     model = GamesCollection
-
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context["qs_json"] = json.dumps(list(GamesCollection.objects.values()))
-#         return context
-
 def search_bar(request):
     url_parameter = request.GET.get('q')
     

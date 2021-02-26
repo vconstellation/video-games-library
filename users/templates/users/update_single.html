@@ -1,14 +1,12 @@
 {% extends 'layout/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<h1> testowanie </h1>
 
 
 <div class="container container-box px-5">
     <div class="media">
         <div class="media-body">
-            <h2 class="account-heading">{{ user.username }}</h2>
-            <p class="text-secondary">{{ user.email }}</p>
+            <h2 class="account-heading">{{ user.username }}'s collection</h2>
             <p class="text-secondary">{{ context.game.games_collection.name }}</p>
             <img src="{{ context.game.games_collection.cover.url }}">
         </div>
