@@ -7,7 +7,7 @@ Users can use this app to display their video games' collection, keep track of t
 The average of scores will then be calculated and displayed on the video game's page. 
 
 ## Technologies
-Project is created with:
+Project has been created with:
 
 * Django 3.1.5
 * django-crispy-forms 1.10.0
